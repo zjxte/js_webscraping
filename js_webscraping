@@ -1,0 +1,19 @@
+// Scrapes cat breed names from https://en.wikipedia.org/wiki/List_of_cat_breeds
+// Run it in the browser console on that page.
+
+var table = document.querySelector("table");
+
+var catNameArray =
+    [...table.querySelectorAll("th[scope='row']")]
+        .map((tr) => {
+            return tr
+                .innerText
+                .replace(/\[.+\]/, "")  // removes everything in square brackets
+                .replace(/\n/g, " ");   // removes all the newlines
+        });
+
+// Join the array of cat names into an HTML string.
+var output = catNameArray.join("<br>");
+
+// Print the HTML output on the page.
+document.body.innerHTML = output;
